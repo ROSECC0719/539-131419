@@ -1,4 +1,4 @@
-# 539 收藏分析 Pro V3.2
+# 539 收藏分析 Pro V3.3
 
 ## GitHub Pages 更新方式
 1. 將此資料夾內的 `index.html`、`manifest.webmanifest`、`service-worker.js` 上傳到原本 Repository 根目錄。
@@ -17,7 +17,7 @@
 資料儲存在瀏覽器 localStorage，更新網站程式通常不會刪除資料，但換手機或清除瀏覽器前務必先匯出 JSON。
 
 
-## V3.2 修正
+## V3.3 修正
 - 規則只會比對觸發日之後的開獎資料。
 - 補登較早日期時，不會倒算成已命中。
 - 開啟新版後會依歷史日期自動重算追蹤狀態。
