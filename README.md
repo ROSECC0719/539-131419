@@ -1,28 +1,22 @@
-# 539 收藏分析 Pro V3.4
+# 539 收藏分析 Pro Ultimate V4
 
-## GitHub Pages 更新方式
-1. 將此資料夾內的 `index.html`、`manifest.webmanifest`、`service-worker.js` 上傳到原本 Repository 根目錄。
-2. GitHub 出現同名檔案時選擇覆蓋，最下方按 **Commit changes**。
-3. 等待約 1–3 分鐘後重新整理原網站。
+## 功能
+- Firebase Email/Password 登入
+- Firestore 手機、電腦即時同步
+- 開獎日期補登與開出順序保存
+- 01～39 逐號三碼對照
+- 下一期開出時自動圈選上一期命中候選
+- 紙本表格模式
+- 收藏規則追蹤、到期與達標判斷
+- 規則管理、JSON 備份、CSV 匯出
+- V3 localStorage 舊資料一鍵搬移到雲端
 
-## 新增功能
-- 總覽儀表板
-- 規則命中率排行榜
-- 號碼歷史出現次數
-- 今日重點號加權排序
-- 分享圖 PNG 產生器
-- 自訂規則與追蹤
-- JSON 備份、CSV 匯出、PWA 離線功能
+## GitHub Pages 更新
+把 index.html、manifest.webmanifest、service-worker.js 上傳覆蓋原檔並 Commit。
 
-資料儲存在瀏覽器 localStorage，更新網站程式通常不會刪除資料，但換手機或清除瀏覽器前務必先匯出 JSON。
+## Firestore 安全規則（重要）
+Firebase Console → Firestore → 規則，貼上 firestore.rules 的內容並發布。
+規則只允許登入者讀寫自己的 users/{uid} 資料。
 
-
-## V3.4 修正
-- 規則只會比對觸發日之後的開獎資料。
-- 補登較早日期時，不會倒算成已命中。
-- 開啟新版後會依歷史日期自動重算追蹤狀態。
-
-
-## V3.4 新增
-- 歷史紀錄會用下一筆較晚日期的開獎號碼，自動圈選上一期逐號對照中有命中的號碼。
-- 不回頭比對，只比對真正的下一期紀錄。
+## 使用
+第一次開啟可建立帳號。手機與電腦使用同一 Email/密碼登入即可同步。
