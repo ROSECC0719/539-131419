@@ -1,10 +1,10 @@
 {
-  "name":"539 收藏分析系統",
-  "short_name":"539收藏",
+  "name":"539 收藏分析 Pro",
+  "short_name":"539 Pro",
   "start_url":"./",
   "display":"standalone",
-  "background_color":"#f4f6fb",
-  "theme_color":"#0f172a",
+  "background_color":"#f5f7fb",
+  "theme_color":"#111827",
   "lang":"zh-Hant",
-  "description":"539 號碼對照、收藏規則與期數追蹤工具"
+  "description":"539 號碼對照、收藏規則追蹤與統計工具"
 }
