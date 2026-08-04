@@ -1,4 +1,4 @@
-# 539 收藏分析 Pro V3.0
+# 539 收藏分析 Pro V3.1
 
 ## GitHub Pages 更新方式
 1. 將此資料夾內的 `index.html`、`manifest.webmanifest`、`service-worker.js` 上傳到原本 Repository 根目錄。
