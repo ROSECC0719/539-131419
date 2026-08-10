@@ -1,4 +1,4 @@
-# 539 收藏分析 Pro Ultimate V4
+# 539 收藏分析 Pro Ultimate V4.1
 
 ## 功能
 - Firebase Email/Password 登入
@@ -20,3 +20,9 @@ Firebase Console → Firestore → 規則，貼上 firestore.rules 的內容並�
 
 ## 使用
 第一次開啟可建立帳號。手機與電腦使用同一 Email/密碼登入即可同步。
+
+
+## V4.1 更新
+- 規則管理依「觸發號碼」由小到大排序。
+- 新增或修改規則後，顯示順序不再受建立/更新時間影響。
+- 多觸發規則以最小觸發號碼為主要排序依據。
