@@ -1,4 +1,4 @@
-const CACHE='539-ultimate-v53-collection-verify-20260817';
+const CACHE='539-ultimate-v54-paper-order-20260818';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./service-worker.js'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
