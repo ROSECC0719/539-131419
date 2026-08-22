@@ -18,3 +18,7 @@ GitHub Pages 專用版本。
 將此 ZIP 解壓縮後，把根目錄內所有檔案上傳到 GitHub repository 根目錄並覆蓋舊檔，再 Commit changes。
 
 `.nojekyll` 請一起保留。
+
+
+## V6.6 AI逆向研究升級
+新增 AI 逆向研究台、可解釋核心6碼、4柱、不出10碼、最近30期無偷看回測與結構信心指數。
