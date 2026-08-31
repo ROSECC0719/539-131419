@@ -1,4 +1,4 @@
-# 539 收藏分析 Pro Ultimate V6.17｜AI 純數據自校準版
+# 539 收藏分析 Pro Ultimate V6.18｜AI 純數據自校準版
 
 本版重做 AI週牌與 AI逆向研究：
 
