@@ -1,1 +1,9 @@
-{"name":"539 收藏分析 Pro Ultimate","short_name":"539 Pro","start_url":"./","display":"standalone","background_color":"#f4f7fb","theme_color":"#203964","lang":"zh-TW"}
+{
+  "name": "539 收藏分析 Pro Ultimate V6.18",
+  "short_name": "539 V6.18",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#152341",
+  "lang": "zh-Hant"
+}
