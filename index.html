@@ -46,7 +46,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 </head><body><div class="app">
-<header class="hero"><div class="heroRow"><div class="heroTitle"><h1>539 收藏分析 Pro Ultimate</h1><p>逐號對照、下期自動圈選、收藏追蹤、紙本模式與雲端同步。</p></div><div class="roseBrand" aria-label="ROSE 539 COLLECTION"><div class="roseMark">R</div><div><div class="roseName">ROSE</div><div class="roseSub">539 COLLECTION</div></div></div><div class="heroBadges"><div class="badge"><span id="cloudDot" class="dot"></span><span id="cloudText">尚未登入</span></div><div class="badge">V6.18.2</div></div></div></header>
+<header class="hero"><div class="heroRow"><div class="heroTitle"><h1>539 收藏分析 Pro Ultimate</h1><p>逐號對照、下期自動圈選、收藏追蹤、紙本模式與雲端同步。</p></div><div class="roseBrand" aria-label="ROSE 539 COLLECTION"><div class="roseMark">R</div><div><div class="roseName">ROSE</div><div class="roseSub">539 COLLECTION</div></div></div><div class="heroBadges"><div class="badge"><span id="cloudDot" class="dot"></span><span id="cloudText">尚未登入</span></div><div class="badge">V6.18.3</div></div></div></header>
 <div id="authGate" class="authBox card">
 <h2>☁️ 登入雲端系統</h2><p class="muted">手機與電腦使用同一個電子郵件帳號登入，就會同步同一份資料。</p>
 <div class="authTabs"><button class="btn dark" id="showLogin">登入</button><button class="btn soft" id="showRegister">建立帳號</button></div>
@@ -465,23 +465,31 @@ function rulePickPerformanceHTML(ruleId,field='picks',label='主牌逐碼'){
 }
 
 function mapHead(n){return Math.floor(Number(n)/10)}
+function sameTailNums(target){const tail=Number(target)%10;return Array.from({length:39},(_,i)=>i+1).filter(n=>n%10===tail)}
 function mapEvidenceBefore(cutoffIndex){
  const h=sortedHistory(),end=Math.max(0,Math.min(cutoffIndex,h.length-1)),windows=[30,60,99999],out=new Map();
  for(let src=1;src<=39;src++)for(const target of (MAP[src]||[])){
-  let weighted=0,weightSum=0,sample=0,hit=0,tailRate=0,headRate=0;
-  windows.forEach((w,wi)=>{let total=0,exact=0,tail=0,head=0;const start=Math.max(0,end-w);
-   for(let i=start;i<end;i++){if(!h[i].nums.includes(src))continue;total++;const ns=h[i+1].nums;if(ns.includes(target))exact++;if(ns.some(n=>n%10===target%10))tail++;if(ns.some(n=>mapHead(n)===mapHead(target)))head++}
-   if(!total)return;const shrink=total/(total+10),exactR=(exact+1)/(total+5),tailR=(tail+1)/(total+5),headR=(head+1)/(total+5);
-   // 先看尾是否延續，再用頭部區間與精確對照做選擇；近期窗口權重較高，並以樣本收縮避免小樣本暴衝。
-   const score=(exactR*.52+tailR*.28+headR*.20)*shrink;const ww=[.46,.34,.20][wi];weighted+=score*ww;weightSum+=ww;
-   if(wi===1){sample=total;hit=exact;tailRate=tailR;headRate=headR}
-  });out.set(`${src}>${target}`,{score:weightSum?weighted/weightSum:0,sample,hit,tailRate,headRate})
+  const tail=target%10,headRows=new Map(),tailWindow=[];let displaySample=0;
+  windows.forEach((w,wi)=>{let total=0,tailHit=0;const heads=Array.from({length:4},()=>({hit:0,tailHit:0}));const start=Math.max(0,end-w);
+   for(let i=start;i<end;i++){if(!h[i].nums.includes(src))continue;total++;const ns=h[i+1].nums,tailNums=ns.filter(n=>n%10===tail);if(tailNums.length)tailHit++;tailNums.forEach(n=>{const hd=mapHead(n);if(heads[hd])heads[hd].hit++})}
+   const shrink=total/(total+10),tailRate=(tailHit+1)/(total+5),ww=[.46,.34,.20][wi];tailWindow.push({wi,total,tailHit,tailRate,shrink,ww});if(wi===1)displaySample=total;
+   for(let hd=0;hd<=3;hd++){const k=hd,hit=heads[hd].hit,rate=(hit+1)/(total+5),x=headRows.get(k)||{head:hd,score:0,weight:0,hit60:0,rate60:0};x.score+=rate*shrink*ww;x.weight+=ww;if(wi===1){x.hit60=hit;x.rate60=rate}headRows.set(k,x)}
+  });
+  const tailScore=tailWindow.reduce((a,x)=>a+x.tailRate*x.shrink*x.ww,0)/(tailWindow.reduce((a,x)=>a+x.ww,0)||1);
+  const heads=[...headRows.values()].map(x=>({...x,score:x.weight?x.score/x.weight:0})).sort((a,b)=>b.score-a.score||a.head-b.head);
+  out.set(`${src}>${target}`,{tail,tailScore,tailRate:tailScore,sample:displaySample,heads,topHeads:heads.slice(0,2)});
  }
- // 每個大圈只在原本三個箭頭號碼中排名，避免改動既有對照表；A=三選一首選、B=次選、C=觀察。
- for(let src=1;src<=39;src++){const a=(MAP[src]||[]).map(t=>({t,x:out.get(`${src}>${t}`)})).sort((u,v)=>(v.x?.score||0)-(u.x?.score||0)||u.t-v.t);a.forEach((z,i)=>{if(z.x){z.x.rank=i+1;z.x.rate=Math.round(z.x.score*100);z.x.grade=i===0?'A':i===1?'B':'C'}})}
+ // 三個箭頭碼只代表「三個候選尾」。先排尾訊號；同尾中的實際號碼再由 0/1/2/3 頭歷史表現選擇。
+ for(let src=1;src<=39;src++){const a=(MAP[src]||[]).map(t=>({t,x:out.get(`${src}>${t}`)})).sort((u,v)=>(v.x?.tailScore||0)-(u.x?.tailScore||0)||u.t-v.t);a.forEach((z,i)=>{if(z.x){z.x.tailRank=i+1;z.x.tailGrade=i===0?'強尾':i===1?'次尾':'觀察尾'}})}
  return out
 }
-function paperMapCellHTML(src,target,nextSet,rankMap){const info=rankMap.get(`${src}>${target}`),hit=nextSet.has(target);if(!info)return `<td>${hit?`<span class="circle">${fmt(target)}</span>`:`<span class="plainNum">${fmt(target)}</span>`}</td>`;const tier=info.rank===1?'top3':info.rank===2?'top10':'top20',icon=info.rank===1?'🔥':info.rank===2?'⭐':'·';return `<td class="paperMapTopCell ${tier}"><span class="paperMapTopBadge ${tier}">${icon} ${info.grade}級 ${info.rank}</span>${hit?`<span class="circle">${fmt(target)}</span>`:`<span class="plainNum">${fmt(target)}</span>`}<span class="paperMapTopRate">研究分${info.rate}・樣本${info.sample}<br>尾${Math.round(info.tailRate*100)}%・頭${Math.round(info.headRate*100)}%</span></td>`}
+function paperMapCellHTML(src,target,nextSet,rankMap){
+ const info=rankMap.get(`${src}>${target}`),exactHit=nextSet.has(target),tail=target%10,tailHits=[...nextSet].filter(n=>n%10===tail);if(!info)return `<td>${exactHit?`<span class="circle">${fmt(target)}</span>`:`<span class="plainNum">${fmt(target)}</span>`}</td>`;
+ const tier=info.tailRank===1?'top3':info.tailRank===2?'top10':'top20',icon=info.tailRank===1?'🔥':info.tailRank===2?'⭐':'·';
+ const choices=(info.topHeads||[]).map((x,i)=>{const n=x.head*10+tail;if(n<1||n>39)return'';return `<span class="pickPerfChip ${i===0?'best':'second'}">${i===0?'頭選':'次頭'} ${fmt(n)} <span class="pickPerfDetail">${x.hit60}/${info.sample}・${Math.round(x.rate60*100)}%</span></span>`}).join('');
+ const hitNote=tailHits.length?`<span class="paperMapTopRate" style="color:#b91c1c">✓ ${tail}尾命中：${tailHits.map(fmt).join('、')}</span>`:'';
+ return `<td class="paperMapTopCell ${tier}"><span class="paperMapTopBadge ${tier}">${icon} ${info.tailGrade} ${tail}尾</span>${exactHit?`<span class="circle">${fmt(target)}</span>`:`<span class="plainNum">${fmt(target)}</span>`}<span class="paperMapTopRate">尾研究 ${Math.round(info.tailScore*100)}・樣本${info.sample}<br>同尾：${sameTailNums(target).map(fmt).join('・')}</span><div class="pickPerf" style="justify-content:center">${choices}</div>${hitNote}</td>`
+}
 function paperTopBadge(rule,rankMap){const x=rankMap.get(rule.id);if(!x)return '';const tier=x.rank<=3?'top3':x.rank<=10?'top10':'top20';const icon=x.rank<=3?'🏆':x.rank<=10?'🔥':'⭐';return `<div class="paperTopMark ${tier}"><b>${icon} TOP ${x.rank}</b><span>${x.rate}%・樣本 ${x.sample}</span></div>`}
 function paperPickHTML(p){if(p.status==='hit')return `<span class="paperRulePick hit">⭕${fmt(p.n)} ${p.dates.map(shortDate).join('、')}</span>`;if(p.status==='miss')return `<span class="paperRulePick miss">${fmt(p.n)} ×</span>`;return `<span class="paperRulePick pending">${fmt(p.n)} …</span>`}
 let paperOrder=localStorage.getItem('paperOrder')||'newest';
