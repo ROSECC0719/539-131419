@@ -43,26 +43,27 @@
 @media(max-width:700px){.paper tr[data-paper-date]{min-height:112px}.paper .ruleCell{min-width:360px}}
 
 
-/* V6.19.9 紙本每日區塊辨識：低彩度四色輪替（刻意不使用綠色） */
+/* V6.20.0 紙本每日區塊辨識：低彩度四色輪替（刻意不使用綠色） */
 .paper tr.paperDayTone0 td{background-color:#fffaf0}.paper tr.paperDayTone1 td{background-color:#f6f8fc}.paper tr.paperDayTone2 td{background-color:#fff6f3}.paper tr.paperDayTone3 td{background-color:#f5f3ff}
 .paper tr.paperDayStart td{border-top-width:4px!important}.paper tr.paperDayTone0.paperDayStart td{border-top-color:#d6a13b!important}.paper tr.paperDayTone1.paperDayStart td{border-top-color:#7b91b3!important}.paper tr.paperDayTone2.paperDayStart td{border-top-color:#c9826f!important}.paper tr.paperDayTone3.paperDayStart td{border-top-color:#8c78b8!important}
 .paper tr.paperDayEnd td{border-bottom-width:3px!important}.paper tr.paperDayTone0.paperDayEnd td{border-bottom-color:#d6a13b!important}.paper tr.paperDayTone1.paperDayEnd td{border-bottom-color:#7b91b3!important}.paper tr.paperDayTone2.paperDayEnd td{border-bottom-color:#c9826f!important}.paper tr.paperDayTone3.paperDayEnd td{border-bottom-color:#8c78b8!important}
 .paper tr.paperDayTone0 .dateCell{background:#fff3d7!important}.paper tr.paperDayTone1 .dateCell{background:#eaf0f8!important}.paper tr.paperDayTone2 .dateCell{background:#fde9e3!important}.paper tr.paperDayTone3 .dateCell{background:#ece8fa!important}
 .paper .dateCell{font-size:15px;letter-spacing:.2px}.paper .paperDayLabel{display:block;margin-top:5px;font-size:9px;font-weight:900;color:#64748b}
 
-/* V6.19.9 規則雷達 */
+/* V6.20.0 規則雷達 */
 .radarGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.radarCard{border:1px solid var(--line);border-radius:15px;padding:12px;background:#fff}.radarCard.hot{box-shadow:inset 0 0 0 2px #f59e0b;background:#fffbeb}.radarCard strong{font-size:25px}.radarSignals{font-size:11px;line-height:1.65;margin-top:7px}.radarMeter{height:7px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin-top:8px}.radarMeter i{display:block;height:100%;background:#111827}.radarBucket{display:grid;grid-template-columns:90px 1fr 80px;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);align-items:center}@media(max-width:800px){.radarGrid{grid-template-columns:1fr 1fr}.radarBucket{grid-template-columns:70px 1fr 65px}}
 
-/* V6.19.9 實用總覽 */
+/* V6.20.0 實用總覽 */
 .dashHead,.dashLatest,.dashDraw{display:flex;align-items:center;justify-content:space-between;gap:12px}.dashHead{margin-bottom:10px}.dashLatest{padding:14px;border:1px solid var(--line);border-radius:15px;background:#f8fafc}.dashLatest .drawnums{font-size:27px;margin-top:5px}.dashRecent{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.dashDraw{display:block;border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}.dashDraw b,.dashDraw span{display:block}.dashDraw span{font-weight:900;margin-top:6px}.dashFocus{background:linear-gradient(135deg,#fff,#f8fafc)}@media(max-width:800px){.dashRecent{grid-template-columns:1fr 1fr}.dashHead,.dashLatest{align-items:flex-start;flex-direction:column}.dashLatest .drawnums{font-size:22px}}
 
+.starStudyGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.starStudyCard{border:1px solid var(--line);border-radius:15px;padding:14px;background:#fff}.starStudyCard h3{margin:0 0 8px}.starBars{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.starPill{padding:5px 8px;border-radius:999px;background:#f6f7fb;border:1px solid var(--line);font-size:12px;font-weight:800}.starPill.good{background:#fff7d6;border-color:#e7b83d}.oeRow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}@media(max-width:800px){.starStudyGrid{grid-template-columns:1fr}}
 .pickLabGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.pickBucket{border:1px solid var(--line);border-radius:15px;padding:14px;background:#fff}.pickBucket h3{margin:0 0 8px}.pickBalls{display:flex;flex-wrap:wrap;gap:7px}.pickBall{display:inline-flex;min-width:42px;height:42px;align-items:center;justify-content:center;border-radius:13px;background:#f1f5f9;font-weight:950;font-size:18px}.pickBall.hot{background:#fff7d6;border:1px solid #f2c94c}.pickBall.cold{background:#eef6ff;border:1px solid #b9d4ff}.pickBall.overlap{outline:3px solid #f59e0b}.pickConverge{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.pickConverge .pickBall{width:100%}@media(max-width:800px){.pickLabGrid{grid-template-columns:1fr}.pickConverge{grid-template-columns:repeat(3,1fr)}}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 </head><body><div class="app">
-<header class="hero"><div class="heroRow"><div class="heroTitle"><h1>539 收藏分析 Pro Ultimate</h1><p>逐號對照、下期自動圈選、收藏追蹤、紙本模式與雲端同步。</p></div><div class="roseBrand" aria-label="ROSE 539 COLLECTION"><div class="roseMark">R</div><div><div class="roseName">ROSE</div><div class="roseSub">539 COLLECTION</div></div></div><div class="heroBadges"><div class="badge"><span id="cloudDot" class="dot"></span><span id="cloudText">尚未登入</span></div><div class="badge">V6.19.9</div></div></div></header>
+<header class="hero"><div class="heroRow"><div class="heroTitle"><h1>539 收藏分析 Pro Ultimate</h1><p>逐號對照、下期自動圈選、收藏追蹤、紙本模式與雲端同步。</p></div><div class="roseBrand" aria-label="ROSE 539 COLLECTION"><div class="roseMark">R</div><div><div class="roseName">ROSE</div><div class="roseSub">539 COLLECTION</div></div></div><div class="heroBadges"><div class="badge"><span id="cloudDot" class="dot"></span><span id="cloudText">尚未登入</span></div><div class="badge">V6.20.0</div></div></div></header>
 <div id="authGate" class="authBox card">
 <h2>☁️ 登入雲端系統</h2><p class="muted">手機與電腦使用同一個電子郵件帳號登入，就會同步同一份資料。</p>
 <div class="authTabs"><button class="btn dark" id="showLogin">登入</button><button class="btn soft" id="showRegister">建立帳號</button></div>
@@ -109,21 +110,22 @@
 </div></section>
 
 <section id="pickLab" class="panel"><div class="grid">
-<div class="card span12 recHero"><h2>🎯 抓號分層｜V6.19.9</h2><p class="muted">依妳提供的研究圖重建成可自動更新版本：包含「遠星（遺漏11～15期、或20期以上）」、「近7～10期未開」、「近4～6期未開」、近20期頻率、最近3期與前4～5期；並自動找多層交集。⭐ 遠星會加星號標記。</p><div class="actions"><button class="btn primary" onclick="schedulePickLab(true)">重新抓號</button></div><div id="pickLabMeta" class="ruleSummary"></div></div>
+<div class="card span12 recHero"><h2>🎯 抓號分層｜V6.20.0</h2><p class="muted">依妳提供的研究圖重建成可自動更新版本：包含「遠星（遺漏11～15期、或20期以上）」、「近7～10期未開」、「近4～6期未開」、近20期頻率、最近3期與前4～5期；並自動找多層交集。⭐ 遠星會加星號標記。</p><div class="actions"><button class="btn primary" onclick="schedulePickLab(true)">重新抓號</button></div><div id="pickLabMeta" class="ruleSummary"></div></div>
 <div class="card span12"><h2>① 未開期數表｜01～39</h2><p class="muted">依目前資料自動計算每顆號碼距離上次開出的期數；這張就是妳每天收到的「今彩未開期數表」自動版，不需要手動輸入。</p><div id="pickGapTable"></div></div><div class="card span12"><h2>② 遺漏分層</h2><div id="pickMissGrid" class="pickLabGrid"></div></div>
 <div class="card span12"><h2>③ 近20期頻率分層</h2><div id="pickFreqGrid" class="pickLabGrid"></div></div>
 <div class="card span12"><h2>④ 近期出現號碼</h2><div id="pickRecentGrid" class="pickLabGrid"></div></div>
 <div class="card span12"><h2>💎 多層交集抓號</h2><p class="muted">不是中獎機率；只把同時落在多個條件的號碼集中出來，避免人工一行一行找重複。</p><div id="pickConverge"></div></div>
-<div class="card span12"><h2>🧭 抓號追蹤生命週期｜手動載入</h2><p class="muted">這不是要妳自己配對號碼。系統會從上面的「多層交集」自動追蹤；為避免手機死機，V6.19.9 不再切頁自動跑120期 Walk-forward。</p><div class="actions"><button class="btn soft" onclick="schedulePickLifecycle()">載入生命週期 / Walk-forward</button></div><div id="pickLifeSummary" class="ruleSummary">尚未載入。先看分層與未開期數表，需要時再按上方按鈕。</div><div id="pickLifeGrid"></div><div id="pickLifeWF"></div></div>
+<div class="card span12"><h2>🌟 交集星級研究｜近3個月</h2><p class="muted">依妳整理的抓牌邏輯，把「近期牌、4～6期未開、遠星/7～10期、近20期熱號」做成歷史逐期檢查。星數＝該策略當時候選池，在下一期5顆實際開獎中命中幾顆；不是保證中獎。</p><div class="actions"><button class="btn soft" onclick="scheduleStarStudy(true)">重新計算星級</button></div><div id="starStudyMeta" class="ruleSummary">為避免手機死機，切頁不自動跑；需要時按「重新計算星級」。</div><div id="starStudyGrid" class="starStudyGrid"></div><div id="fridayOddEven" style="margin-top:14px"></div></div>
+<div class="card span12"><h2>🧭 抓號追蹤生命週期｜手動載入</h2><p class="muted">這不是要妳自己配對號碼。系統會從上面的「多層交集」自動追蹤；為避免手機死機，V6.20.0 不再切頁自動跑120期 Walk-forward。</p><div class="actions"><button class="btn soft" onclick="schedulePickLifecycle()">載入生命週期 / Walk-forward</button></div><div id="pickLifeSummary" class="ruleSummary">尚未載入。先看分層與未開期數表，需要時再按上方按鈕。</div><div id="pickLifeGrid"></div><div id="pickLifeWF"></div></div>
 </div></section>
 <section id="radarPanel" class="panel"><div class="grid">
-<div class="card span12 recHero"><h2>📡 規則雷達｜V6.19.9</h2><p class="muted">把紙本對照、三模型、拖牌、好朋友、近期節奏與尾勢拆成不同訊號來源。重點不是誰單項第一，而是「不同方法是否同時指向同一顆」。下方另用最近最多100期做輕量 Walk-forward，驗證訊號重疊數是否真的比較有價值。</p><div class="actions"><button class="btn primary" onclick="renderRadar()">重新掃描 01～39</button></div></div>
+<div class="card span12 recHero"><h2>📡 規則雷達｜V6.20.0</h2><p class="muted">把紙本對照、三模型、拖牌、好朋友、近期節奏與尾勢拆成不同訊號來源。重點不是誰單項第一，而是「不同方法是否同時指向同一顆」。下方另用最近最多100期做輕量 Walk-forward，驗證訊號重疊數是否真的比較有價值。</p><div class="actions"><button class="btn primary" onclick="renderRadar()">重新掃描 01～39</button></div></div>
 <div class="card span12"><h2>🔥 今日共振號</h2><div id="radarCurrent"></div></div>
 <div class="card span7"><h2>🧪 訊號重疊 Walk-forward</h2><p class="muted">每一期只使用它之前的資料，統計「當時有幾個獨立訊號支持」的號碼，下一期實際有沒有開。這裡使用輕量且可重複驗證的四類訊號，不偷看未來。</p><div id="radarValidation"></div></div>
 <div class="card span5"><h2>💎 雷達解讀</h2><div id="radarGuide"></div></div>
 </div></section>
 <section id="redLab" class="panel"><div class="grid">
-<div class="card span12 recHero"><h2>💟 紅線全餐研究台｜V6.19.9</h2><p class="muted">把公開網站中妳圈選的研究用途整合成我們自己的可驗證版本；既有板路拖牌、週牌、覆蓋矩陣、好朋友牌直接沿用，新增 AI套餐、Manus AI式共識、尾數預測、號碼拖下1/2/3期、孤碰板路。所有統計只讀目前選定資料庫，不改 Firebase 正式 history。</p><div class="actions"><button class="btn primary" onclick="renderRedLab()">重新演算全餐</button><button class="btn soft" onclick="showTab('followPanel')">板路拖牌</button><button class="btn soft" onclick="showTab('teacherLab')">週牌分析</button><button class="btn soft" onclick="showTab('matrixLab')">覆蓋矩陣</button><button class="btn soft" onclick="showTab('friendPanel')">好朋友牌</button></div></div>
+<div class="card span12 recHero"><h2>💟 紅線全餐研究台｜V6.20.0</h2><p class="muted">把公開網站中妳圈選的研究用途整合成我們自己的可驗證版本；既有板路拖牌、週牌、覆蓋矩陣、好朋友牌直接沿用，新增 AI套餐、Manus AI式共識、尾數預測、號碼拖下1/2/3期、孤碰板路。所有統計只讀目前選定資料庫，不改 Firebase 正式 history。</p><div class="actions"><button class="btn primary" onclick="renderRedLab()">重新演算全餐</button><button class="btn soft" onclick="showTab('followPanel')">板路拖牌</button><button class="btn soft" onclick="showTab('teacherLab')">週牌分析</button><button class="btn soft" onclick="showTab('matrixLab')">覆蓋矩陣</button><button class="btn soft" onclick="showTab('friendPanel')">好朋友牌</button></div></div>
 <div class="card span6"><h2>✨ AI 套餐｜多訊號組合</h2><div id="redAiPack"></div></div>
 <div class="card span6"><h2>✨ Manus AI式｜共識研究</h2><div id="redManus"></div></div>
 <div class="card span6"><h2>◎ 尾數預測</h2><div id="redTail"></div></div>
@@ -829,7 +831,7 @@ function ai18ResolvedSnapshots(rows){const byDate=new Map(rows.map(x=>[x.date,x.
 function renderTeacherLab(){const rows=ai17Rows(),w=ai17Weekly(rows),weekly=$('#teacherWeekly'),cons=$('#teacherConsensus'),stats=$('#teacherStats'),hist=$('#teacherHistory');if(!weekly)return;if(!w){weekly.innerHTML='<div class="empty">至少需要 30 期歷史資料。</div>';return}ai18SaveWeeklySnapshot(rows,w);weekly.innerHTML=`<div class="rule"><span class="tag">🔥 核心6碼</span><div class="picks" style="font-size:34px;margin:10px 0">${w.core.map(fmt).join('・')}</div><div class="mini">次選：${w.secondary.map(fmt).join('、')}｜純歷史數據，不使用老師牌。</div></div>`;cons.innerHTML=w.rank.slice(0,20).map((n,i)=>`<div class="rank"><span class="rankNo">${i+1}</span><div class="rankMain"><b>${fmt(n)}</b><div class="mini">分數 ${w.votes[n].toFixed(1)}</div></div></div>`).join('');stats.innerHTML=`<div class="histRow"><b>逆向100期樣本</b><b>${w.base.bt.samples}</b></div><div class="histRow"><b>穩定度</b><b>${w.base.stability.toFixed(0)}/100</b></div><div class="histRow"><b>A級不出</b><b>${w.base.A.length}碼</b></div>`;const names=['日','一','二','三','四','五','六'];hist.innerHTML=w.daily.map(d=>`<div class="history"><div class="historyHead"><b>週${names[d.date.getDay()]}｜${d.date.toISOString().slice(0,10)}</b></div><div class="drawnums">${d.picks.map(fmt).join('・')}</div></div>`).join('');const snaps=ai18ResolvedSnapshots(rows),done=snaps.filter(x=>Number.isInteger(x.hits)),cnt=[0,0,0,0];done.forEach(x=>cnt[Math.min(3,x.hits)]++);const avg=done.length?done.reduce((a,x)=>a+x.hits,0)/done.length:0;$('#weekly100Stats').innerHTML=`<div class="ruleSummary">已保存 ${snaps.length}/100 份真實快照｜已驗證 ${done.length} 期｜平均命中 ${avg.toFixed(2)}｜0中 ${cnt[0]} (${done.length?(cnt[0]/done.length*100).toFixed(1):0}%)｜1中 ${cnt[1]}｜2中 ${cnt[2]}｜3+ ${cnt[3]}</div>`;$('#weekly100History').innerHTML=snaps.slice().reverse().map(x=>`<details class="history"><summary><b>${x.sourceDate}</b>｜${x.actualDate?'驗證 '+x.actualDate:'待開獎'}｜命中 ${x.hits??'—'}</summary><div class="mini">核心：${x.core.map(fmt).join('、')}<br>次選：${x.secondary.map(fmt).join('、')}<br>模型：${x.status.version}｜穩定 ${x.status.stability}｜A級 ${x.status.aCount}碼</div><div class="mini">排名/分數：${x.ranking.slice(0,15).map(z=>fmt(z.n)+'('+z.score+')').join('、')}</div>${x.actual?`<div class="drawnums">實開：${x.actual.map(fmt).join('、')}</div>`:''}</details>`).join('')||'<div class="empty">尚無歷史快照；從 V6.18 起每個資料版本只保存一次真實預測。</div>'}
 
 
-// ===== V6.19.9 抓號分層：非阻塞 + 正規化 + 快取 =====
+// ===== V6.20.0 抓號分層：非阻塞 + 正規化 + 快取 =====
 let PICKLAB_CACHE={key:'',data:null},PICKLAB_TIMER=null;
 function pickLabRows(){
  return sortedHistory().map(r=>({date:String(r.date||''),nums:Array.isArray(r.nums)?r.nums:(Array.isArray(r.numbers)?r.numbers:[])})).filter(r=>r.date&&r.nums.length===5);
@@ -886,7 +888,38 @@ function schedulePickLifecycle(){
  if(PICKLIFE_TIMER)clearTimeout(PICKLIFE_TIMER);PICKLIFE_TIMER=setTimeout(()=>{PICKLIFE_TIMER=null;try{const d=pickLabData(false);renderPickLifecycle(d,sum,grid,wf)}catch(e){sum.innerHTML='<b style="color:#b42318">生命週期載入失敗：</b>'+esc(e.message||String(e))}},80);
 }
 
-// ===== V6.19.9 抓號追蹤生命週期 + Walk-forward =====
+
+// ===== V6.20.0 交集星級研究：手動、輕量、最多近3個月 =====
+let STAR_TIMER=null,STAR_CACHE={key:'',data:null};
+function starSnapshot(rows){
+ if(rows.length<20)return null;
+ const gap=Array(40).fill(rows.length),seen=Array(40).fill(false);
+ for(let back=0;back<rows.length;back++){for(const n of rows[rows.length-1-back].nums)if(n>=1&&n<=39&&!seen[n]){gap[n]=back;seen[n]=true}if(seen.slice(1).every(Boolean))break}
+ const freq=Array(40).fill(0);for(const r of rows.slice(-20))for(const n of r.nums)freq[n]++;
+ const union=rs=>new Set(rs.flatMap(r=>r.nums)),all=Array.from({length:39},(_,i)=>i+1),recent5=union(rows.slice(-5));
+ const far=new Set(all.filter(n=>(gap[n]>=11&&gap[n]<=15)||gap[n]>=20)),m710=new Set(all.filter(n=>gap[n]>=7&&gap[n]<=10)),m46=new Set(all.filter(n=>gap[n]>=4&&gap[n]<=6)),hot5=new Set(all.filter(n=>freq[n]>=5));
+ const inter=(a,b)=>[...a].filter(n=>b.has(n)).sort((x,y)=>x-y),uni=(a,b)=>[...new Set([...a,...b])].sort((x,y)=>x-y);
+ return {recent5:[...recent5].sort((a,b)=>a-b),m46:[...m46],far710:uni(far,m710),hot5:[...hot5],s1:inter(m46,recent5),s2:inter(new Set(uni(far,m710)),recent5),s3:inter(hot5,m46),s4:inter(hot5,m710)};
+}
+function starStudyData(force=false){
+ const rows=pickLabRows(),key=rows.length+'|'+(rows.at(-1)?.date||'');if(!force&&STAR_CACHE.key===key&&STAR_CACHE.data)return STAR_CACHE.data;
+ const defs=[['近5期牌', 'recent5'],['近4～6期未開 × 近5期','s1'],['遠星/7～10期 × 近5期','s2'],['近20期≥5次 × 4～6期未開','s3'],['近20期≥5次 × 7～10期未開','s4']];
+ const stats=defs.map(([name,k])=>({name,k,samples:0,stars:[0,0,0,0,0,0],best:0,lastPool:[]}));
+ const start=Math.max(20,rows.length-78); // 約3個月、每週6期
+ for(let i=start;i<rows.length;i++){const snap=starSnapshot(rows.slice(0,i));if(!snap)continue;const actual=new Set(rows[i].nums);for(const st of stats){const pool=snap[st.k]||[];if(!pool.length)continue;const hit=pool.filter(n=>actual.has(n)).length;st.samples++;st.stars[Math.min(5,hit)]++;st.best=Math.max(st.best,hit)}}
+ const now=starSnapshot(rows)||{};stats.forEach(st=>st.lastPool=now[st.k]||[]);
+ const fri={'5:0':0,'4:1':0,'3:2':0,'2:3':0,'1:4':0,'0:5':0};let friN=0;
+ for(const r of rows.slice(-180)){const dt=new Date(String(r.date)+'T12:00:00');if(dt.getDay()!==5)continue;let odd=r.nums.filter(n=>n%2).length,even=5-odd;fri[odd+':'+even]=(fri[odd+':'+even]||0)+1;friN++}
+ const data={stats,fri,friN,rows};STAR_CACHE={key,data};return data;
+}
+function scheduleStarStudy(force=false){const m=$('#starStudyMeta'),g=$('#starStudyGrid');if(!m||!g)return;m.innerHTML='<b>⏳ 星級研究計算中…</b>｜只跑最近約3個月，避免手機卡住。';g.innerHTML='';if(STAR_TIMER)clearTimeout(STAR_TIMER);STAR_TIMER=setTimeout(()=>{try{renderStarStudy(force)}catch(e){m.innerHTML='<b style="color:#b42318">星級研究失敗：</b>'+esc(e.message||String(e))}},60)}
+function renderStarStudy(force=false){
+ const m=$('#starStudyMeta'),g=$('#starStudyGrid'),oe=$('#fridayOddEven');if(!m||!g)return;const d=starStudyData(force);m.innerHTML=`歷史視窗：最近約 <b>${Math.min(78,d.rows.length)}</b> 期｜最新 <b>${d.rows.at(-1)?.date||'-'}</b><br><span class="mini">「幾星」是下一期實際5碼落在當時候選池的顆數；候選池為0碼的期次不計樣本。</span>`;
+ g.innerHTML=d.stats.map(st=>{const ge3=st.stars.slice(3).reduce((a,b)=>a+b,0),rate=st.samples?ge3/st.samples:0;return `<div class="starStudyCard"><h3>${st.name}</h3><div class="mini">目前候選 ${st.lastPool.length}碼：${st.lastPool.length?st.lastPool.map(fmt).join('・'):'—'}</div><div style="margin-top:8px"><b>3星以上 ${ge3}/${st.samples}・${(rate*100).toFixed(1)}%</b>｜歷史最高 ${st.best}星</div><div class="starBars">${[3,4,5].map(x=>`<span class="starPill ${st.stars[x]?'good':''}">${x}🌟 ${st.stars[x]}次</span>`).join('')}</div></div>`}).join('');
+ if(oe){const order=['5:0','4:1','3:2','2:3','1:4','0:5'];oe.innerHTML=`<h3>📅 星期五奇偶型態</h3><p class="muted">顯示最近最多180期資料中的星期五實際分布，作為合牌結構參考，不把某個比例硬當預測。</p>${order.map(k=>`<div class="oeRow"><span>奇:偶 ${k}</span><b>${d.fri[k]||0} 次</b></div>`).join('')}<div class="mini" style="margin-top:7px">星期五樣本 ${d.friN} 期</div>`}
+}
+
+// ===== V6.20.0 抓號追蹤生命週期 + Walk-forward =====
 function pickSnapshot(rows){
  if(rows.length<5)return {picked:[],gap:Array(40).fill(rows.length),freq:Array(40).fill(0)};
  const gap=Array(40).fill(rows.length),seen=Array(40).fill(false);
@@ -919,7 +952,7 @@ function renderPickLifecycle(d,sum,grid,wfel){
  const rows=[['首次抓到','one'],['連抓2期','two'],['連抓3期','three'],['連抓4+期','four']];wfel.innerHTML=rows.map(([name,k])=>{const a=z.wf[k],r=rate(k),note=a.s<20?'｜⚠️樣本偏少':r>base?'｜↑高於基準':'｜未高於基準';return `<div class="histRow"><b>${name}</b><b>${a.h}/${a.s}・${(r*100).toFixed(1)}% ${note}</b></div>`}).join('');
 }
 
-// ===== V6.19.9 紅線全餐：公開功能用途的獨立重建，不複製第三方私有模型 =====
+// ===== V6.20.0 紅線全餐：公開功能用途的獨立重建，不複製第三方私有模型 =====
 
 function radarCurrent(){
  const h=sortedHistory();if(h.length<2)return[];const latest=h.at(-1),a=recommendationModel(),b=similarHistoryModel(),c=modelC(),signals={};
