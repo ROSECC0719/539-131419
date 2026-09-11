@@ -75,8 +75,11 @@ V6.22.7：下注格式直貼（X/x/×/逗號/句點分柱）、牌勢驗牌器�
 
 V6.23.1：恢復雲端全部研究存檔合併載入；520期績效改為分段非阻塞驗證；GPT Native 新增訊號共識、趨勢加速度與近2期重複懲罰。
 
-## V6.23.2
+## V6.23.3
 - 模型 C 正式退役：現行介面、即時計算、Walk-forward、ABC 綜合與 A∩B∩C 全部停止；Firebase 舊研究存檔不刪除，只是不再參與現行模型。
 - 模型研究收斂為 A、B、AB 與 A∩B，520 切點驗證只跑這三組，降低運算量。
 - GPT Native Brain 重建選牌邏輯：新增三期序列型態、前一期總和/跨度/奇偶形狀條件、多訊號否決、近7日主組黏牌懲罰；不是單純放大分數。
 - GPT 仍只讀原始 history，不讀 A/B、拖牌、尾數、週牌或其他模組，保留每日主組紀錄與嚴格 Walk-forward。
+
+
+V6.23.3 hotfix: restore accidentally removed renderDashboard and combinedABModel after C retirement. Keeps GPT brain rebuild and AB-only runtime.
