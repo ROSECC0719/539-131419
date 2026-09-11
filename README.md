@@ -75,11 +75,19 @@ V6.22.7：下注格式直貼（X/x/×/逗號/句點分柱）、牌勢驗牌器�
 
 V6.23.1：恢復雲端全部研究存檔合併載入；520期績效改為分段非阻塞驗證；GPT Native 新增訊號共識、趨勢加速度與近2期重複懲罰。
 
-## V6.23.3
+## V6.23.4
 - 模型 C 正式退役：現行介面、即時計算、Walk-forward、ABC 綜合與 A∩B∩C 全部停止；Firebase 舊研究存檔不刪除，只是不再參與現行模型。
 - 模型研究收斂為 A、B、AB 與 A∩B，520 切點驗證只跑這三組，降低運算量。
 - GPT Native Brain 重建選牌邏輯：新增三期序列型態、前一期總和/跨度/奇偶形狀條件、多訊號否決、近7日主組黏牌懲罰；不是單純放大分數。
 - GPT 仍只讀原始 history，不讀 A/B、拖牌、尾數、週牌或其他模組，保留每日主組紀錄與嚴格 Walk-forward。
 
 
-V6.23.3 hotfix: restore accidentally removed renderDashboard and combinedABModel after C retirement. Keeps GPT brain rebuild and AB-only runtime.
+V6.23.4 hotfix: restore accidentally removed renderDashboard and combinedABModel after C retirement. Keeps GPT brain rebuild and AB-only runtime.
+
+## V6.23.4 修正
+- 修復 C 退役後規則雷達仍引用 `c.items` 導致 Dashboard 後半段中斷：今日雷達、本期研究重點、交叉拖牌、進行中追蹤恢復。
+- 模型績效改為進頁自動分段驗證，按鈕僅供重新驗證，不再同步鎖頁。
+- GPT 原生新增最近72期條件支持→實開校準層；保留嚴格 Walk-forward，不保證回測一定出現三星。
+- AI週牌加入最近36期實開校正、過熱降權與尾數/區間集中限制。
+- 柱碰解析修正：`02x11x25.33` = 3柱，第3柱為 25、33；三柱不產生四星。
+- 獎金試算改採 39樂合彩官方固定單注獎金：二合 1,125、三合 11,250、四合 212,500；不再用總碰數乘單一自填獎金。
