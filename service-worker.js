@@ -1,4 +1,4 @@
-const CACHE='539-pro-v6.27.11';
+const CACHE='539-pro-v6.27.12';
 const CORE=['./','./index.html'];
 self.addEventListener('install',event=>{
   self.skipWaiting();
